@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Palindrome Number Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>🔄 Palindrome Checker</h2>
+      <p>Enter a number to see if it is a palindrome:</p>
+      <input type="number" id="numInput" placeholder="Enter a number" />
+      <br />
+      <button onclick="checkPalindrome()">Check</button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <script>
+      function reverseNumber(n) {
+        return parseInt(n.toString().split(" ").reverse().join(""));
+      }
+
+      function checkPalindrome() {
+        const num = document.getElementById("numInput").value;
+        if (num === "") {
+          document.getElementById("result").textContent =
+            "❌ Please enter a number.";
+          return;
+        }
+
+        const reversed = reverseNumber(num);
+        let message = `🔁 Reversed Number: ${reversed}\n`;
+
+        if (parseInt(num) === reversed) {
+          message += "\n✅ It is a Palindrome!";
+        } else {
+          message += "\n❌ Not a Palindrome.";
+        }
+
+        document.getElementById("result").textContent = message;
+      }
+    </script>
+  </body>
+</html>

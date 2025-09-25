@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Simple Shopping Cart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>My Shop</h1>
+  <div class="product-list">
+
+    <div class="product">
+      <img src="shopping.webp" alt="Product A">
+      <div class="info">
+        <h2>Shirt</h2>
+        <p>Price: ₹100</p>
+        <input type="number" min="0" value="0" class="quantity" data-price="100">
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="shopping (1).webp" alt="Product B">
+      <div class="info">
+        <h2>Bag</h2>
+        <p>Price: ₹150</p>
+        <input type="number" min="0" value="0" class="quantity" data-price="150">
+      </div>
+    </div>
+    <!-- Product 3 -->
+    <div class="product">
+      <img src="shopping (2).webp" alt="Product C">
+      <div class="info">
+        <h2>Shoes</h2>
+        <p>Price: ₹200</p>
+        <input type="number" min="0" value="0" class="quantity" data-price="200">
+      </div>
+    </div>
+  </div>
+
+  <button id="calculate-btn">Calculate Bill</button>
+  <h2>Total: ₹<span id="total-amount">0</span></h2>
+
+  <script src="bill.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body {
+  background-color: white;
+}
+.Std-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+.info {
+  height: 50%;
+  width: 50%;
+  background-color: aqua;
+  color: black;
+  border-radius: 30px;
+}

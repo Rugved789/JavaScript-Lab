@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beautiful Grade Checker</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-image: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 2em;
+      }
+
+      input[type="number"] {
+        padding: 12px;
+        width: 100%;
+        margin: 15px 0;
+        border: none;
+        border-radius: 10px;
+        font-size: 1em;
+      }
+
+      button {
+        padding: 12px 25px;
+        background: linear-gradient(45deg, #007bff, #00c6ff);
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background: linear-gradient(45deg, #0056b3, #009ec3);
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      @media (max-width: 500px) {
+        .container {
+          padding: 30px 20px;
+        }
+
+        h2 {
+          font-size: 1.6em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>🎓 Grade Checker</h2>
+      <p>Enter your marks to know your grade:</p>
+      <input type="number" id="marksInput" placeholder="Enter marks" />
+      <br />
+      <button onclick="checkGrade()">Check Grade</button>
+      <p class="result" id="result"></p>
+    </div>
+
+    <script>
+      function checkGrade() {
+        const marks = parseInt(document.getElementById("marksInput").value);
+        let grade = "";
+
+        if (isNaN(marks) || marks < 0 || marks > 100) {
+          grade = "❌ Please enter valid marks between 0 and 100.";
+        } else if (marks > 90) {
+          grade = "🅰️+ (Excellent)";
+        } else if (marks > 80) {
+          grade = "🅰️ (Very Good)";
+        } else if (marks > 65) {
+          grade = "🅱️ (Good)";
+        } else if (marks >= 50) {
+          grade = "🅲 (Average)";
+        } else {
+          grade = "❌ Fail. Keep Trying!";
+        }
+
+        document.getElementById("result").innerHTML = grade;
+      }
+    </script>
+  </body>
+</html>

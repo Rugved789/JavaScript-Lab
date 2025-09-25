@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.product img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.product .info {
+  flex-grow: 1;
+}
+
+.quantity {
+  width: 60px;
+}
+ 
+#calculate-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+}

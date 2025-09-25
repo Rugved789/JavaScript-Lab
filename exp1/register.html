@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Student Registration Form - SIT</h2>
+      <form>
+        <div class="form-row">
+          <label for="roll">Roll no.:</label>
+          <input type="text" id="roll" name="roll" />
+        </div>
+
+        <div class="form-row">
+          <label>Student name:</label>
+          <input type="text" placeholder="First Name" />
+          <input type="text" placeholder="Last Name" />
+        </div>
+
+        <div class="form-row">
+          <label for="father">Father's name:</label>
+          <input type="text" id="father" name="father" />
+        </div>
+
+        <div class="form-row">
+          <label>Date of birth:</label>
+          <input type="text" placeholder="Day" />
+          <input type="text" placeholder="Month" />
+          <input type="text" placeholder="Year" />
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email id:</label>
+          <input type="email" id="email" name="email" />
+        </div>
+
+        <div class="form-row">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" />
+        </div>
+
+        <div class="form-row">
+          <label>Gender:</label>
+          <label><input type="radio" name="gender" value="Male" /> Male</label>
+          <label
+            ><input type="radio" name="gender" value="Female" /> Female</label
+          >
+        </div>
+
+        <div class="form-row">
+          <label>Department:</label>
+          <label><input type="checkbox" name="dept" value="CSE" /> CSE</label>
+          <label><input type="checkbox" name="dept" value="IT" /> IT</label>
+          <label><input type="checkbox" name="dept" value="ECE" /> ECE</label>
+          <label
+            ><input type="checkbox" name="dept" value="Civil" /> Civil</label
+          >
+          <label><input type="checkbox" name="dept" value="Mech" /> Mech</label>
+        </div>
+
+        <div class="form-row">
+          <label for="course">Course:</label>
+          <select id="course" name="course">
+            <option>Select Current Course</option>
+            <option>B.Tech</option>
+            <option>M.Tech</option>
+            <option>MBA</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="photo">Student photo:</label>
+          <input type="file" id="photo" name="photo" />
+        </div>
+
+        <div class="form-row">
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" />
+        </div>
+
+        <div class="form-row">
+          <label for="address">Address:</label>
+          <textarea id="address" name="address" rows="3" cols="40"></textarea>
+        </div>
+
+        <div class="form-row">
+          <button type="submit" class="submit-btn">Register</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
