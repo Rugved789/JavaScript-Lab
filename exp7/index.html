@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Signal</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0f2f5, #dfe6e9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .signal-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #222;
+      width: 320px;
+      height: 100px;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      padding: 0 25px;
+      gap: 25px;
+      position: relative;
+    }
+
+    .light {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #444;
+      box-shadow: 0 0 10px #111 inset;
+      transition: all 0.4s ease;
+    }
+
+    .red.active {
+      background: #e74c3c;
+      box-shadow: 0 0 25px #e74c3c, 0 0 10px #111 inset;
+    }
+
+    .yellow.active {
+      background: #f1c40f;
+      box-shadow: 0 0 25px #f1c40f, 0 0 10px #111 inset;
+    }
+
+    .green.active {
+      background: #27ae60;
+      box-shadow: 0 0 25px #27ae60, 0 0 10px #111 inset;
+    }
+
+    .controls {
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .controls button {
+      padding: 10px 25px;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .start {
+      background: linear-gradient(90deg, #00b894, #019267);
+    }
+
+    .start:hover {
+      background: linear-gradient(90deg, #00cec9, #00b894);
+      transform: scale(1.05);
+    }
+
+    .stop {
+      background: linear-gradient(90deg, #ff7675, #d63031);
+    }
+
+    .stop:hover {
+      background: linear-gradient(90deg, #ff6b6b, #e84118);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="signal-container">
+    <div class="light red" id="red"></div>
+    <div class="light yellow" id="yellow"></div>
+    <div class="light green" id="green"></div>
+  </div>
+
+  <div class="controls">
+    <button class="start" onclick="startSignal()">Start</button>
+    <button class="stop" onclick="stopSignal()">Stop</button>
+  </div>
+
+  <script>
+    let intervalId = null;
+    const colors = ['red', 'yellow', 'green'];
+    let idx = 0;
+    let isRunning = false;
+
+    function setSignal(color) {
+      document.querySelectorAll('.light').forEach(l => l.classList.remove('active'));
+      if (color) document.getElementById(color).classList.add('active');
+    }
+
+    function startSignal() {
+      if (isRunning) return; // Prevent multiple intervals
+      isRunning = true;
+      setSignal(colors[idx]);
+      intervalId = setInterval(() => {
+        idx = (idx + 1) % colors.length;
+        setSignal(colors[idx]);
+      }, 1000);
+    }
+
+    function stopSignal() {
+      clearInterval(intervalId);
+      isRunning = false;
+      document.querySelectorAll('.light').forEach(l => l.classList.remove('active'));
+    }
+
+    // Start automatically on load
+    startSignal();
+  </script>
+</body>
+
+</html>

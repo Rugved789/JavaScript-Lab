@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timers and Dynamic UI</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 30px; }
+    #timer { font-size: 28px; color: #2E8B57; margin-bottom: 20px; }
+    table { margin: 20px auto; border-collapse: collapse; width: 60%; }
+    th, td { border: 1px solid #ccc; padding: 10px; }
+    th { background-color: #4CAF50; color: white; }
+    .active { background-color: yellow; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>⏱ Countdown Timer</h2>
+  <div id="timer"></div>
+
+  <h2>📚 Class Scheduler</h2>
+  <table id="schedule">
+    <tr><th>Class</th><th>Starts In (seconds)</th></tr>
+    <tr><td>Math</td><td id="math">5</td></tr>
+    <tr><td>Science</td><td id="science">10</td></tr>
+    <tr><td>English</td><td id="english">15</td></tr>
+  </table>
+
+  <script>
+    // Countdown Timer
+    let countdown = 10;
+    const timerDisplay = document.getElementById("timer");
+
+    const timer = setInterval(() => {
+      timerDisplay.textContent = `Countdown: ${countdown} seconds left`;
+      countdown--;
+      if (countdown < 0) {
+        clearInterval(timer);
+        timerDisplay.textContent = "⏰ Time’s up!";
+      }
+    }, 1000);
+
+    // Class Scheduler
+    function startClass(id, className) {
+      setTimeout(() => {
+        document.getElementById(id).parentElement.classList.add("active");
+        alert(`${className} class is starting now!`);
+      }, parseInt(document.getElementById(id).textContent) * 1000);
+    }
+
+    startClass("math", "Math");
+    startClass("science", "Science");
+    startClass("english", "English");
+  </script>
+</body>
+</html>

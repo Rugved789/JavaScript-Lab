@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gym Admission Form</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=80') 
+  no-repeat center center/cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 0;
+  }
+
+  .form-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 380px;
+    color: white;
+    backdrop-filter: blur(10px);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #fff;
+    font-size: 26px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    color: #e0e0e0;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  input:focus, select:focus {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #00bcd4;
+  }
+
+  .error {
+    color: #ff6b6b;
+    font-size: 13px;
+  }
+
+  .success {
+    color: #00e676;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #00bcd4, #2196f3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(45deg, #2196f3, #00bcd4);
+  }
+</style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="form-container">
+    <h2>Gym Admission Form</h2>
+    <form id="gymForm" novalidate>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <span id="nameError" class="error"></span>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <span id="emailError" class="error"></span>
+
+      <label for="age">Age</label>
+      <input type="number" id="age" placeholder="Enter your age" min="13" max="100" required>
+      <span id="ageError" class="error"></span>
+
+      <label for="membership">Membership Type</label>
+      <select id="membership">
+        <option value="Trial">Trial</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Quarterly">Quarterly</option>
+        <option value="Annual">Annual</option>
+      </select>
+
+      <button type="submit" id="submitBtn">Submit</button>
+      <div id="formMessage" class="success"></div>
+    </form>
+  </div>
+
+  <script>
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const ageInput = document.getElementById('age');
+    const form = document.getElementById('gymForm');
+    const message = document.getElementById('formMessage');
+
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const ageError = document.getElementById('ageError');
+
+    function validateName() {
+      const name = nameInput.value.trim();
+      if (name.length < 2 || !/^[A-Za-z ]+$/.test(name)) {
+        nameError.textContent = 'Please enter a valid name';
+        return false;
+      }
+      nameError.textContent = '';
+      return true;
+    }
+
+    function validateEmail() {
+      const email = emailInput.value.trim();
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!pattern.test(email)) {
+        emailError.textContent = 'Enter a valid email address';
+        return false;
+      }
+      emailError.textContent = '';
+      return true;
+    }
+
+    function validateAge() {
+      const age = parseInt(ageInput.value);
+      if (isNaN(age) || age < 13 || age > 100) {
+        ageError.textContent = 'Age must be between 13 and 100';
+        return false;
+      }
+      ageError.textContent = '';
+      return true;
+    }
+
+    nameInput.addEventListener('input', validateName);
+    emailInput.addEventListener('input', validateEmail);
+    ageInput.addEventListener('input', validateAge);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const isNameValid = validateName();
+      const isEmailValid = validateEmail();
+      const isAgeValid = validateAge();
+
+      if (isNameValid && isEmailValid && isAgeValid) {
+        message.textContent = 'Form submitted successfully!';
+        form.reset();
+      } else {
+        message.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>

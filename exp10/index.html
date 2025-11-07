@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON Handling and API Mock</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f7f7f7;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 70%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #loading {
+      color: gray;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Records (Fetched from JSON)</h2>
+  <p id="loading">Loading student data...</p>
+
+  <table id="studentTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Marks</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // Fetch data from JSON file
+    fetch("students.json")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to load JSON file");
+        }
+        return response.json();
+      })
+      .then(data => {
+        const tableBody = document.querySelector("#studentTable tbody");
+        const loadingMsg = document.getElementById("loading");
+        const table = document.getElementById("studentTable");
+
+        // Hide loading text and show table
+        loadingMsg.style.display = "none";
+        table.style.display = "table";
+
+        // Add each student as a table row
+        data.forEach(student => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.course}</td>
+            <td>${student.marks}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        document.getElementById("loading").textContent = "Error loading data!";
+        console.error("Error:", error);
+      });
+  </script>
+</body>
+</html>
